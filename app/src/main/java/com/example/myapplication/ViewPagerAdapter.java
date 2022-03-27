@@ -2,19 +2,16 @@ package com.example.myapplication;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.content.pm.LabeledIntent;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
-
-import com.google.android.material.tabs.TabLayout;
-import com.google.android.material.tabs.TabLayoutMediator;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -66,4 +63,12 @@ public class ViewPagerAdapter extends RecyclerView.Adapter<ViewPagerAdapter.Hori
         }
     }
 
+    public class MyFragment extends Fragment
+    {
+        @Override
+        public View onCreateView(LayoutInflater paramLayoutInflater, ViewGroup paramViewGroup,    Bundle paramBundle)
+        {
+            return paramLayoutInflater.inflate(R.layout.firstpager, paramViewGroup, false);
+        }
+    }
 }

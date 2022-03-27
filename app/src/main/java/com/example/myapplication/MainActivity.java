@@ -6,6 +6,12 @@ import androidx.appcompat.app.AppCompatActivity;
 //import android.support.v7.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentPagerAdapter;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.viewpager2.adapter.FragmentStateAdapter;
 import androidx.viewpager2.widget.ViewPager2;
 
 import android.os.Bundle;
@@ -17,6 +23,7 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.view.animation.RotateAnimation;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
 
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.tabs.TabLayout;
@@ -27,6 +34,7 @@ import java.util.LinkedList;
 public class MainActivity extends AppCompatActivity {
     private String[] title = {"第一页", "第二页"};
     private Boolean judge1 = Boolean.FALSE;
+    private LinearLayout linearlayout;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,7 +42,9 @@ public class MainActivity extends AppCompatActivity {
 
         ViewPager2 viewPager2 = findViewById(R.id.viewpager);
         ViewPagerAdapter adapter = new ViewPagerAdapter(this);
-        viewPager2.setAdapter(adapter);
+        MYFragmentStateAdapter myFragmentStateAdapter = new MYFragmentStateAdapter(this);
+        viewPager2.setAdapter(myFragmentStateAdapter);
+
         TabLayout tabLayout = findViewById(R.id.tab_layout);
         //TabLayout与ViewPager2联动
         new TabLayoutMediator(tabLayout, viewPager2, new TabLayoutMediator.TabConfigurationStrategy() {
@@ -68,13 +78,13 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onDrawerOpened(@NonNull View drawerView) {
-//                RotateAnimation rotateAnimation;
-                judge1 = Boolean.TRUE;
+
             }
 
             @Override
             public void onDrawerClosed(@NonNull View drawerView) {
-                judge1 = Boolean.FALSE;
+//                judge1 = Boolean.FALSE;
+                imageButton.startAnimation(animation1);
             }
 
             @Override
@@ -87,13 +97,13 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 if (judge1){
                     drawer.closeDrawer(Gravity.LEFT);
-                    imageButton.startAnimation(animation1);
                 }else{
                     drawer.openDrawer(Gravity.LEFT);
                     imageButton.startAnimation(animation);
                 }
             }
         });
+
 
         /*---------------------------添加头布局和尾布局-----------------------------*/
         //获取xml头布局view
@@ -103,8 +113,7 @@ public class MainActivity extends AppCompatActivity {
 
         //Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
         //setSupportActionBar(myToolbar);
-
-
     }
+
 
 }
