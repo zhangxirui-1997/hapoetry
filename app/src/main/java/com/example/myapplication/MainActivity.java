@@ -13,6 +13,9 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.view.animation.RotateAnimation;
 import android.widget.ImageButton;
 
 import com.google.android.material.navigation.NavigationView;
@@ -23,6 +26,7 @@ import java.util.LinkedList;
 
 public class MainActivity extends AppCompatActivity {
     private String[] title = {"第一页", "第二页"};
+    private Boolean judge1 = Boolean.FALSE;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,11 +49,49 @@ public class MainActivity extends AppCompatActivity {
         NavigationView navigationview = (NavigationView) findViewById(R.id.navigation_view);
         final DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
 
+        RotateAnimation animation = new RotateAnimation(0, 90,
+                Animation.RELATIVE_TO_SELF,  0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
+        animation.setDuration(100);
+        animation.setFillAfter(true);
 
+        RotateAnimation animation1 = new RotateAnimation(90, 180,
+                Animation.RELATIVE_TO_SELF,  0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
+        animation1.setDuration(100);
+        animation1.setFillAfter(true);
+
+
+        drawer.addDrawerListener(new DrawerLayout.DrawerListener() {
+            @Override
+            public void onDrawerSlide(@NonNull View drawerView, float slideOffset) {
+
+            }
+
+            @Override
+            public void onDrawerOpened(@NonNull View drawerView) {
+//                RotateAnimation rotateAnimation;
+                judge1 = Boolean.TRUE;
+            }
+
+            @Override
+            public void onDrawerClosed(@NonNull View drawerView) {
+                judge1 = Boolean.FALSE;
+            }
+
+            @Override
+            public void onDrawerStateChanged(int newState) {
+
+            }
+        });
         imageButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                drawer.openDrawer(Gravity.LEFT);
+                if (judge1){
+                    drawer.closeDrawer(Gravity.LEFT);
+                    imageButton.startAnimation(animation1);
+                }else{
+                    drawer.openDrawer(Gravity.LEFT);
+                    imageButton.startAnimation(animation);
+                }
             }
         });
 
@@ -59,8 +101,8 @@ public class MainActivity extends AppCompatActivity {
         //添加头布局的另外一种方式
         //View headview=navigationview.inflateHeaderView(R.layout.navigationview_header);
 
-//        Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
-//        setSupportActionBar(myToolbar);
+        //Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
+        //setSupportActionBar(myToolbar);
 
 
     }
