@@ -1,3 +1,6 @@
 <resources>
     <string name="app_name" translatable="false">My Application</string>
+
+    <string name="first_item" translatable="false">first</string>
+    <string name="second_item" translatable="false">second</string>
 </resources>

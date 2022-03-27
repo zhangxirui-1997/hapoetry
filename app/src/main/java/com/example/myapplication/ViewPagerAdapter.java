@@ -13,6 +13,9 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.material.tabs.TabLayout;
+import com.google.android.material.tabs.TabLayoutMediator;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -39,6 +42,7 @@ public class ViewPagerAdapter extends RecyclerView.Adapter<ViewPagerAdapter.Hori
     @SuppressLint("SetTextI18n")
     @Override
     public void onBindViewHolder(@NonNull HorizontalVpViewHolder holder, int position) {
+
         holder.mTextView.setText("第  " + (position + 1) + " 界面");
         holder.mLinearLayout.setBackgroundResource(backgrounds.get(position));
     }
