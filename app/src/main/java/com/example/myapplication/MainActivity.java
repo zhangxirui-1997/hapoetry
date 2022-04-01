@@ -3,17 +3,12 @@ package com.example.myapplication;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
-//import android.support.v7.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.drawerlayout.widget.DrawerLayout;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentActivity;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentPagerAdapter;
-import androidx.recyclerview.widget.RecyclerView;
-import androidx.viewpager2.adapter.FragmentStateAdapter;
+
 import androidx.viewpager2.widget.ViewPager2;
 
+import android.content.Intent;
 import android.os.Bundle;
 //import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -32,16 +27,17 @@ import com.google.android.material.tabs.TabLayoutMediator;
 import java.util.LinkedList;
 
 public class MainActivity extends AppCompatActivity {
-    private String[] title = {"第一页", "第二页"};
+    private String[] title = {"阅读", "创作"};
     private Boolean judge1 = Boolean.FALSE;
     private LinearLayout linearlayout;
+    private Intent searchintent;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        searchintent = new Intent(this, SearchActivity.class);
         ViewPager2 viewPager2 = findViewById(R.id.viewpager);
-        ViewPagerAdapter adapter = new ViewPagerAdapter(this);
+//        ViewPagerAdapter adapter = new ViewPagerAdapter(this);
         MYFragmentStateAdapter myFragmentStateAdapter = new MYFragmentStateAdapter(this);
         viewPager2.setAdapter(myFragmentStateAdapter);
 
@@ -56,6 +52,7 @@ public class MainActivity extends AppCompatActivity {
 
 
         ImageButton imageButton = findViewById(R.id.imageButton);
+        ImageButton searchButton = findViewById(R.id.searchButton);
         NavigationView navigationview = (NavigationView) findViewById(R.id.navigation_view);
         final DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
 
@@ -101,6 +98,12 @@ public class MainActivity extends AppCompatActivity {
                     drawer.openDrawer(Gravity.LEFT);
                     imageButton.startAnimation(animation);
                 }
+            }
+        });
+        searchButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(searchintent);
             }
         });
 

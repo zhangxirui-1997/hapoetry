@@ -26,7 +26,7 @@
 
             <ImageButton
                 android:id="@+id/imageButton"
-                android:layout_width="25dp"
+                android:layout_width="40dp"
                 android:layout_height="match_parent"
                 android:layout_weight="2"
                 android:background="#00000000"
@@ -41,6 +41,21 @@
                 app:titleTextColor="@color/black"
                 android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
                 app:title="hello title" />
+
+            <ImageButton
+                android:id="@+id/searchButton"
+                android:layout_width="40dp"
+                android:layout_height="match_parent"
+                android:layout_weight="2"
+                android:background="#00000000"
+                app:srcCompat="@drawable/baseline_search_24"
+                app:tint="@color/black" />
+
+            <Space
+                android:layout_width="10dp"
+                android:layout_height="wrap_content"
+                android:background="@color/gray" />
+
         </LinearLayout>
 
         <!--        <android.support.v7.widget.Toolbar-->
