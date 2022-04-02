@@ -40,7 +40,7 @@
                 android:background="@color/gray"
                 app:titleTextColor="@color/black"
                 android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
-                app:title="hello title" />
+                app:title="Main Activity" />
 
             <ImageButton
                 android:id="@+id/searchButton"

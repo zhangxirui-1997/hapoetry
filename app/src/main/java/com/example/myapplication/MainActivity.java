@@ -118,5 +118,4 @@ public class MainActivity extends AppCompatActivity {
         //setSupportActionBar(myToolbar);
     }
 
-
 }
