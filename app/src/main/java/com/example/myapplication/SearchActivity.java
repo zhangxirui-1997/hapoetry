@@ -11,6 +11,8 @@ public class SearchActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+//        要显示的activity的动画  要消失的activity的动画
+//        overridePendingTransition(R.anim.layout_down_up, R.anim.layout_center );
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search);
 
@@ -21,5 +23,12 @@ public class SearchActivity extends AppCompatActivity {
 
         // Enable the Up button
         ab.setDisplayHomeAsUpEnabled(true);
+    }
+
+    @Override
+    public void finish() {
+//        overridePendingTransition(R.anim.layout_down_up, R.anim.layout_center );
+        super.finish();
+
     }
 }
