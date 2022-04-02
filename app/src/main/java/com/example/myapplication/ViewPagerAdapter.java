@@ -21,8 +21,9 @@ public class ViewPagerAdapter extends RecyclerView.Adapter<ViewPagerAdapter.Hori
     private List<Integer> backgrounds;
     private Context mContext;
 
-    ViewPagerAdapter(Context context) {
+    ViewPagerAdapter(Context context, List<Integer> bg) {
         mContext = context;
+        backgrounds = bg;
         if (backgrounds == null) {
             backgrounds = new ArrayList<>();
             backgrounds.add(android.R.color.holo_blue_bright);
@@ -39,9 +40,21 @@ public class ViewPagerAdapter extends RecyclerView.Adapter<ViewPagerAdapter.Hori
     @SuppressLint("SetTextI18n")
     @Override
     public void onBindViewHolder(@NonNull HorizontalVpViewHolder holder, int position) {
-
-        holder.mTextView.setText("第  " + (position + 1) + " 界面");
-        holder.mLinearLayout.setBackgroundResource(backgrounds.get(position));
+        holder.item_title.setText("将进酒");
+        holder.item_author.setText("李白");
+        holder.item_years.setText("[唐代]");
+        holder.item_content.setText("君不见黄河之水天上来，奔流到海不复回。\n" +
+                "君不见高堂明镜悲白发，朝如青丝暮成雪。\n" +
+                "人生得意须尽欢，莫使金樽空对月。\n" +
+                "天生我材必有用，千金散尽还复来。\n" +
+                "烹羊宰牛且为乐，会须一饮三百杯。\n" +
+                "岑夫子，丹丘生，将进酒，杯莫停。\n" +
+                "与君歌一曲，请君为我倾耳听。\n" +
+                "钟鼓馔玉不足贵，但愿长醉不愿醒。\n" +
+                "古来圣贤皆寂寞，惟有饮者留其名。\n" +
+                "陈王昔时宴平乐，斗酒十千恣欢谑。\n" +
+                "主人何为言少钱，径须沽取对君酌。\n" +
+                "五花马、千金裘，\n呼儿将出换美酒，与尔同销万古愁。");
     }
 
     @Override
@@ -53,13 +66,18 @@ public class ViewPagerAdapter extends RecyclerView.Adapter<ViewPagerAdapter.Hori
     }
 
     class HorizontalVpViewHolder extends RecyclerView.ViewHolder {
-        LinearLayout mLinearLayout;
-        TextView mTextView;
+
+        TextView item_title;
+        TextView item_content;
+        TextView item_author;
+        TextView item_years;
 
         HorizontalVpViewHolder(@NonNull View itemView) {
             super(itemView);
-            mLinearLayout = itemView.findViewById(R.id.ll_h_v);
-            mTextView = itemView.findViewById(R.id.tv_hv);
+            item_title=itemView.findViewById(R.id.item_title);
+            item_author=itemView.findViewById(R.id.item_author);
+            item_years=itemView.findViewById(R.id.item_years);
+            item_content=itemView.findViewById(R.id.item_content);
         }
     }
 
